@@ -1,9 +1,6 @@
-__author__ = 'mauricio.antunes'
-
-#TODO: create methods to convert the postfix convention to normal convention.
-
 import unittest
 import re
+
 
 # Defines a dict of operators.
 operators = {"+":int.__add__,
@@ -38,8 +35,6 @@ class RPN(object):
         else:
             raise BadNotation("Operators missing in the following expression: '%s'" % expression)
 
-    def infix2postfix(self, expression):
-        pass
 
 class RPNTest(unittest.TestCase):
     def test_expression(self):
@@ -54,15 +49,15 @@ class RPNTest(unittest.TestCase):
         self.assertRaises(BadNotation, RPN().validate_expression("+++++"))
         self.assertRaises(BadNotation, RPN().validate_expression("1 1 1 1 + - * / ^"))
 
+
 class BadNotation(Exception):
     def __init__(self, expression):
         self._msg = "Bad notation at building the following notation: %s" % expression
 
     def _message(self):
         return self._msg
-    #TODO: learn more about properties. It seems to be cool! (http://docs.python.org/3.3/library/functions.html#property).
     message = property(_message)
 
-# Runs RPN
+
 if __name__ == "__main__":
     unittest.main()
